@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="YOUR_MONETAG_SCRIPT_URL_HERE"></script>
+    
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; background-color: #f0f2f5; }
+        button { padding: 15px 25px; margin: 10px; font-size: 16px; border-radius: 10px; border: none; cursor: pointer; color: white; }
+        .rewarded { background-color: #28a745; }
+        .popup { background-color: #007bff; }
+    </style>
+</head>
+<body>
+    <h1>Earn Coins</h1>
+    
+    <button class="rewarded" onclick="playRewarded()">Watch Rewarded Ad (+5 Coins)</button>
+    <br>
+    <button class="popup" onclick="playPopup()">Watch Popup Ad (+2 Coins)</button>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+
+        function playRewarded() {
+            // Standard Rewarded Interstitial
+            show_11206427().then(() => {
+                tg.sendData("reward_user_5_coins");
+                tg.close();
+            }).catch(e => console.error("Rewarded error", e));
+        }
+
+        function playPopup() {
+            // Popup Format
+            show_11206427('pop').then(() => {
+                tg.sendData("reward_user_2_coins");
+                tg.close();
+            }).catch(e => console.error("Popup error", e));
+        }
+    </script>
+</body>
+</html>
+
